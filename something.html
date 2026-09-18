@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Alo 💖</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: "Poppins", Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow-x: hidden;
+      background: linear-gradient(
+        135deg,
+        #87ceeb,
+        #b7e3f8,
+        #d8f1ff
+      );
+      color: #29404a;
+    }
+
+    /* Floating hearts */
+    .heart {
+      position: fixed;
+      bottom: -30px;
+      font-size: 22px;
+      animation: floatUp linear infinite;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      filter: drop-shadow(0 3px 5px rgba(80, 130, 160, 0.2));
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg) scale(0.8);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      50% {
+        transform: translateY(-50vh) translateX(25px)
+                   rotate(15deg) scale(1);
+      }
+
+      75% {
+        transform: translateY(-80vh) translateX(-20px)
+                   rotate(-15deg) scale(1.05);
+      }
+
+      100% {
+        transform: translateY(-115vh) translateX(10px)
+                   rotate(360deg) scale(0.8);
+        opacity: 0;
+      }
+    }
+
+    .container {
+      width: 90%;
+      max-width: 650px;
+      text-align: center;
+      padding: 45px 30px;
+      border-radius: 30px;
+
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(15px);
+
+      box-shadow:
+        0 20px 60px rgba(40, 100, 140, 0.2);
+
+      position: relative;
+      z-index: 2;
+
+      animation: containerFloat 5s ease-in-out infinite;
+    }
+
+    /* Gentle floating effect for the card */
+    @keyframes containerFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-6px);
+      }
+    }
+
+    .cake {
+      font-size: 70px;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    h1 {
+      font-size: 42px;
+      margin: 15px 0 5px;
+      color: #318ac2;
+    }
+
+    .name {
+      font-size: 28px;
+      font-weight: bold;
+      color: #4b7090;
+    }
+
+    .intro {
+      margin: 20px auto;
+      line-height: 1.7;
+      font-size: 17px;
+      max-width: 520px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 15px 32px;
+      border: none;
+      border-radius: 50px;
+
+      background: linear-gradient(
+        135deg,
+        #4faee0,
+        #6c8fe8
+      );
+
+      color: white;
+      font-size: 17px;
+      font-weight: bold;
+      cursor: pointer;
+
+      box-shadow:
+        0 8px 20px rgba(70, 140, 210, 0.35);
+
+      transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        opacity 0.3s ease;
+    }
+
+    button:hover {
+      transform: scale(1.08) translateY(-2px);
+
+      box-shadow:
+        0 12px 28px rgba(70, 140, 210, 0.45);
+    }
+
+    button:active {
+      transform: scale(0.97);
+    }
+
+    /* Surprise section */
+    #surprise {
+      display: none;
+      margin-top: 30px;
+
+      opacity: 0;
+      transform: translateY(35px) scale(0.96);
+
+      animation: none;
+    }
+
+    /* Smooth floating reveal */
+    #surprise.show {
+      display: block;
+      animation: surpriseFloat 1.4s cubic-bezier(
+        0.22, 1, 0.36, 1
+      ) forwards;
+    }
+
+    @keyframes surpriseFloat {
+      0% {
+        opacity: 0;
+        transform:
+          translateY(45px)
+          scale(0.94);
+      }
+
+      40% {
+        opacity: 0.6;
+        transform:
+          translateY(-8px)
+          scale(1.01);
+      }
+
+      70% {
+        opacity: 0.9;
+        transform:
+          translateY(3px)
+          scale(0.995);
+      }
+
+      100% {
+        opacity: 1;
+        transform:
+          translateY(0)
+          scale(1);
+      }
+    }
+
+    /* Gentle floating after reveal */
+    #surprise.floating {
+      animation: gentleFloat 4s ease-in-out infinite;
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-5px);
+      }
+    }
+
+    #surprise h2 {
+      color: #318ac2;
+      font-size: 30px;
+      margin-bottom: 15px;
+    }
+
+    #surprise p {
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .signature {
+      margin-top: 20px;
+      font-size: 19px;
+      font-weight: bold;
+      color: #527c9c;
+    }
+
+    .small {
+      margin-top: 15px;
+      font-size: 13px;
+      opacity: 0.7;
+    }
+
+    /* Confetti */
+    .confetti {
+      position: fixed;
+      width: 10px;
+      height: 10px;
+      top: -20px;
+      z-index: 10;
+
+      animation:
+        fall 3.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+        forwards;
+    }
+
+    @keyframes fall {
+      0% {
+        opacity: 0;
+        transform:
+          translateY(-20px)
+          rotate(0deg)
+          scale(0.5);
+      }
+
+      15% {
+        opacity: 1;
+      }
+
+      100% {
+        opacity: 0;
+        transform:
+          translateY(110vh)
+          rotate(720deg)
+          scale(1);
+      }
+    }
+
+    @media (max-width: 600px) {
+
+      .container {
+        padding: 35px 20px;
+      }
+
+      h1 {
+        font-size: 34px;
+      }
+
+      .name {
+        font-size: 24px;
+      }
+
+      .cake {
+        font-size: 60px;
+      }
+
+      #surprise h2 {
+        font-size: 25px;
+      }
+
+      #surprise p {
+        font-size: 16px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="cake">🎂</div>
+
+    <h1>Happy Birthday!</h1>
+
+    <div class="name">Alo 💕</div>
+
+    <p class="intro">
+      Today is a little more special for me because it's the day
+      someone really wonderful came into this world.
+      So I made something small just for you...
+    </p>
+
+    <button onclick="showSurprise()">
+      💝 Click here 💝
+    </button>
+
+    <div id="surprise">
+
+      <h2>✨ A Little Birthday Wish For You ✨</h2>
+
+      <p>
+        Dear Alo,<br><br>
+
+        At frist Happy Brirhday. many many returns of the day.❤️<br><br>
+
+        On your birthday, I just want to wish you a life
+        filled with beautiful moments and good helth, 
+        genuine smiles,
+        peaceful days, and all the happiness you deserve. 🌸
+        <br><br>
+
+        And honestly... I'm really blessed cause I got someone 
+        like you in my life. A person who simply become
+        a beautiful part of our memories without even trying,
+        and you're one of those people for me. ❤️
+        <br><br>
+
+        May this new year of your life bring you closer
+        to everything you've ever wished for.
+        And whenever you feel like the world is a little
+        too heavy, I hope you remember that there's someone
+        here who will always be happy to see you smile. 🫶
+        <br><br>
+
+        Stay exactly the way you are,
+        because there's something really special about you
+        that words can't completely explain.
+        <br><br>
+
+        Happy Birthday, pichki. 🎂🌷
+        <br>
+        Keep smiling... it suits you. ❤️
+      </p>
+
+      <div class="signature">
+        — With a little extra warmth,<br>
+        Your Chagol 💗
+      </div>
+
+      <div class="small">
+         I hope this little surprise made you smile. 😊
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    /* Floating hearts */
+    function createHeart() {
+
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+
+      const hearts = [
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "🌸",
+        "✨",
+        "🩵"
+      ];
+
+      heart.innerHTML =
+        hearts[Math.floor(Math.random() * hearts.length)];
+
+      heart.style.left =
+        Math.random() * 100 + "vw";
+
+      heart.style.animationDuration =
+        (6 + Math.random() * 5) + "s";
+
+      heart.style.fontSize =
+        (15 + Math.random() * 20) + "px";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => {
+        heart.remove();
+      }, 12000);
+    }
+
+    setInterval(createHeart, 650);
+
+
+    /* My Wishes button */
+    function showSurprise() {
+
+      const Wish =
+        document.getElementById("surprise");
+
+      const button =
+        document.querySelector("button");
+
+      /* Reveal My Wishes */
+      surprise.classList.add("show");
+
+      /* Change button */
+      button.innerHTML =
+        "💖 Thank You 💖";
+
+      button.disabled = true;
+      button.style.opacity = "0.8";
+      button.style.cursor = "default";
+
+      /* Confetti */
+      for (let i = 0; i < 100; i++) {
+
+        const confetti =
+          document.createElement("div");
+
+        confetti.classList.add("confetti");
+
+        confetti.style.left =
+          Math.random() * 100 + "vw";
+
+        confetti.style.animationDelay =
+          Math.random() * 1.5 + "s";
+
+        const shapes = [
+          "💗",
+          "💕",
+          "✨",
+          "🎉",
+          "🌸",
+          "💖",
+          "🩵"
+        ];
+
+        confetti.innerHTML =
+          shapes[
+            Math.floor(Math.random() * shapes.length)
+          ];
+
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 5000);
+      }
+
+      /* Start gentle floating after reveal */
+      setTimeout(() => {
+        surprise.classList.add("floating");
+      }, not );
+
+      /* Smooth scroll on mobile */
+      setTimeout(() => {
+       surprise.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }, 200);
+    }
+
+  </script>
+
+</body>
+</html>
